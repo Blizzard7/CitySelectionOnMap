@@ -68,7 +68,7 @@
                   showTooltip("City Name: " + d.city_ascii + " Lat: " + d.lat + " Lng: " + d.lng);
               }).on("mouseout", function (d, i) {
                   tooltip.classed("hidden", true);
-              }).attr("r", 2).style("fill", "#0057BB").style("opacity", 0.5);
+              }).attr("r", 2).style("fill", "navy").style("opacity", 0.5);
           selectinItiallySelctedCity(cityData);
       }
 
@@ -114,7 +114,7 @@
               }).on("mouseout", function (d, i) {
                   tooltip.classed("hidden", true);
               })
-              .attr("r", selectedCityCircleScale(zoomScale)).style("fill", "#FF781E").style("opacity", 0.75);
+              .attr("r", selectedCityCircleScale(zoomScale)).style("fill", "red").style("opacity", 0.75);
       }
 
       function zoomed() {
