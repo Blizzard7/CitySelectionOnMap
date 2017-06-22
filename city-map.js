@@ -68,7 +68,23 @@
                   showTooltip("City Name: " + d.city_ascii + " Lat: " + d.lat + " Lng: " + d.lng);
               }).on("mouseout", function (d, i) {
                   tooltip.classed("hidden", true);
-              }).attr("r", 2).style("fill", "navy").style("opacity", 0.5);
+              }).attr("r", 2).style("fill", "navy").style("opacity", 0.5);   
+          g.selectAll("text")
+              .data(cityData)
+              .enter()
+              .append("text")
+              .text(function (d) {
+                  return d.city;
+              })
+              .attr("x", function (d) {
+                  return projection([d.lng, d.lat])[0];
+              })
+              .attr("y", function (d) {
+                  return projection([d.lng, d.lat])[1] + 0.75;
+              })
+              .attr("text-anchor", "middle")
+              .attr('font-size', '0.5pt')
+              .style("visibility", "hidden");
           selectinItiallySelctedCity(cityData);
       }
 
@@ -134,6 +150,13 @@
           if (s > 1) {
               g.selectAll(".city-circle").attr("r", cityCircleScale(s));
               g.selectAll(".selected-city-circle").attr("r", selectedCityCircleScale(s));
+          }
+          if (s < 10) {
+              g.selectAll("text")
+                  .style("visibility", "hidden");
+          } else {
+              g.selectAll("text")
+                  .style("visibility", "visible");
           }
       }
 
